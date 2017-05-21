@@ -47,6 +47,14 @@
         <property name="mapperLocations" value="classpath:sqlmap/sql-*.xml" />  
 	</bean>
 	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="sqlHandler" class="com.dataqube.handler.DefaultSqlSessionHandler">
+        <property name="sqlSession" ref="sqlSessionTemplate"/>
+    </bean>
+	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
         <property name="basePackage"  value="com.eumier.*.dao" />  
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />  
